@@ -1,0 +1,7 @@
+default_context:
+        full_name: "${FULL_NAME}"
+        email: "${EMAIL}"
+        github_username: "${GITHUB_USERNAME}"
+        app_name: "${APP_NAME}"
+        project_name: "${PROJECT_NAME}"
+        project_short_description: "${PROJECT_SHORT_DESCRIPTION}"

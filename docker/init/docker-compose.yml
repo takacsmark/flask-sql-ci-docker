@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+        cookiecutter:
+                build:
+                        context: .
+                        args: 
+                                repo: ${TEMPLATE_REPO_URL}
+                image: ${DOCKER_USERNAME}/cookiecutter:initiator
+                container_name: flask-mysql-ci-initiator
+                command: tail -f /dev/null

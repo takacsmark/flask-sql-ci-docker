@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+        web:
+                build:
+                        context: ../../
+                        dockerfile: docker/dev/Dockerfile
+                        args:
+                                app_name: ${APP_NAME}
+                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:dev
+                env_file: ../../secrets.env
+                ports:
+                        - 5000:5000
+                        - 2992:2992
+                volumes:
+                        - type: bind
+                          source: ../../${APP_NAME}
+                          target: /root/${APP_NAME}
+                        - /root/${APP_NAME}/node_modules
