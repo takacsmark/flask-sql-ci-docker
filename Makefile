@@ -56,3 +56,10 @@ dev-ps:
 #Show development logs
 dev-logs:
 	docker-compose -f docker/dev/docker-compose.yml logs -f
+
+#Run tests
+test-run:
+	docker-compose -f docker/dev/docker-compose.yml run web flask test
+	docker-compose -f docker/dev/docker-compose.yml rm -f web
+	
+
