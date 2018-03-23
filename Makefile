@@ -59,7 +59,9 @@ dev-logs:
 
 #Run tests
 test-run: .dev-secret
-	docker-compose -f docker/dev/docker-compose.yml run web flask test
-	docker-compose -f docker/dev/docker-compose.yml rm -f web
+	docker-compose -f docker/dev/docker-compose.yml up -d
+	sleep 10
+	docker-compose -f docker/dev/docker-compose.yml exec web flask test
+	docker-compose -f docker/dev/docker-compose.yml down 
 	
 
