@@ -58,7 +58,7 @@ dev-logs:
 	docker-compose -f docker/dev/docker-compose.yml logs -f
 
 #Run tests
-test-run:
+test-run: .dev-secret
 	docker-compose -f docker/dev/docker-compose.yml run web flask test
 	docker-compose -f docker/dev/docker-compose.yml rm -f web
 	
