@@ -1,4 +1,4 @@
 secrets.env
 */dev.db
 */migrations/**
-myflaskapp
+myflaskapp/
