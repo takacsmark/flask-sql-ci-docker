@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Application configuration."""
 import os
-
+from flask.helpers import get_debug_flag
 
 class Config(object):
     """Base configuration."""
@@ -22,7 +22,15 @@ class ProdConfig(Config):
 
     ENV = 'prod'
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'  # TODO: Change me
+    try:
+        with open(os.path.join('/run/secrets/', os.environ.get('POSTGRES_PASSWORD', 'dummy')), 'r') as secret_file:
+            POSTGRES_PASSWORD = secret_file.read().strip()
+    except IOError as e:
+        if get_debug_flag():
+            POSTGRES_PASSWORD = 'dummy-dev'
+        else:
+            raise
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:{0}@postgres/postgres'.format(POSTGRES_PASSWORD)
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
 
 

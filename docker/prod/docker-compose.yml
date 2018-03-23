@@ -1,0 +1,39 @@
+version: '3.5'
+
+services:
+        web:
+                build:
+                        context: ../../
+                        dockerfile: docker/prod/Dockerfile
+                        args:
+                                app_name: ${APP_NAME}
+                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:prod
+                ports:
+                        - 5000:5000
+                environment:
+                        POSTGRES_PASSWORD: /run/secrets/db_password
+                networks:
+                        - flaskappnet
+                secrets:
+                        - db_password
+        postgres:
+                image: postgres:10.3-alpine
+                environment:
+                        POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+                volumes:
+                        - type: volume
+                          source: proddb
+                          target: /var/lib/postgresql/data
+                networks:
+                        - flaskappnet
+                secrets:
+                        - db_password
+
+
+secrets:
+        db_password:
+                file: ../../db_password.txt
+volumes:
+        proddb:
+networks:
+        flaskappnet:

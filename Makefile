@@ -64,4 +64,14 @@ test-run: .dev-secret
 	docker-compose -f docker/dev/docker-compose.yml exec web flask test
 	docker-compose -f docker/dev/docker-compose.yml down 
 	
+#Build production
+prod-build:
+	docker-compose -f docker/prod/docker-compose.yml build
 
+#Deploy production stack
+prod-deploy:
+	docker stack deploy myflaskapp -c docker/prod/docker-compose.yml
+
+#Remove production stack
+prod-rm:
+	docker stack rm myflaskapp
