@@ -75,3 +75,7 @@ prod-deploy:
 #Remove production stack
 prod-rm:
 	docker stack rm myflaskapp
+
+#AWS deploy
+aws-deploy:
+	docker -H localhost:2374 stack deploy myflaskapp -c docker/prod/docker-compose.yml
