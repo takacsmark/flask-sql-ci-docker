@@ -8,7 +8,7 @@ spec:
   ports:
     - name: headless
       port: 55555
-      tragetPort: 0
+      targetPort: 0
   selector:
     app: myflaskapp
     tier: postgres
@@ -61,4 +61,5 @@ spec:
           mountPath: /var/lib/postgresql/data
       volumes:
       - name: proddb
-        claimName: proddb
+        persistentVolumeClaim:
+          claimName: proddb
