@@ -36,7 +36,7 @@ spec:
         tier: web
     spec:
       containers:
-      - image: takacsmark/flask-mysql-ci-web:prod-k8s
+      - image: takacsmark/flask-sql-ci-web:prod-k8s
         name: web
         env:
         - name: POSTGRES_PASSWORD
