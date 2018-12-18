@@ -12,6 +12,10 @@ services:
                         - 5000:5000
                 environment:
                         POSTGRES_PASSWORD: /run/secrets/db_password
+                        FLASK_APP: autoapp.py
+                        FLASK_DEBUG: 0
+                        FLASK_ENV: production
+                        DATABASE_URL: postgres
                 networks:
                         - flaskappnet
                 secrets:

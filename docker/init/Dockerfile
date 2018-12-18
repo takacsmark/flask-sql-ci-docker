@@ -1,6 +1,6 @@
-ARG python_image_verson
+ARG python_image_version
 
-FROM python:$python_image_verson
+FROM python:$python_image_version
 
 ARG repo
 ARG repo_release_version
