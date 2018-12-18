@@ -23,8 +23,8 @@ init:
 	envsubst <docker/init/cookiecutter.template.yml >docker/init/cookiecutter.yml
 	docker-compose -f docker/init/docker-compose.yml up -d --build
 	docker cp flask-mysql-ci-initiator:/root/$(APP_NAME) ./$(APP_NAME)
-	sed -i 's/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline --host 0.0.0.0/' ./$(APP_NAME)/package.json
-	sed -i 's/FLASK_DEBUG=1 flask run/FLASK_DEBUG=1 flask run --host=0.0.0.0/' ./$(APP_NAME)/package.json
+	sed -i '' -e 's/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline --host 0.0.0.0/' ./$(APP_NAME)/package.json
+	sed -i '' -e 's/flask run/flask run --host=0.0.0.0/' ./$(APP_NAME)/package.json
 	docker-compose -f docker/init/docker-compose.yml down
 	rm docker/init/cookiecutter.yml
 
@@ -41,13 +41,13 @@ dev-build:
 	docker-compose -f docker/dev/docker-compose.yml build
 
 #Start up development environment
-dev-up: .dev-secret
+dev-up:
 	docker-compose -f docker/dev/docker-compose.yml up -d
 
 #Bring down development environment
 dev-down:
 	docker-compose -f docker/dev/docker-compose.yml down
-	rm secrets.env
+	# rm secrets.env
 
 #List development conatiners
 dev-ps:

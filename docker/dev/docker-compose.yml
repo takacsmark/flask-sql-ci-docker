@@ -7,13 +7,15 @@ services:
                         dockerfile: docker/dev/Dockerfile
                         args:
                                 app_name: ${APP_NAME}
+                                python_image_verson: ${PYTHON_IMAGE_VERSON}
+                                repo_release_version: ${REPO_RELEASE_VERSION}
                 image: ${DOCKER_USERNAME}/flask-mysql-ci-web:dev
-                env_file: ../../secrets.env
                 ports:
                         - 5000:5000
                         - 2992:2992
-                volumes:
-                        - type: bind
-                          source: ../../${APP_NAME}
-                          target: /root/${APP_NAME}
-                        - /root/${APP_NAME}/node_modules
+                # volumes:
+                #         - type: bind
+                #           source: ../../${APP_NAME}
+                #           target: /root/${APP_NAME}
+                #         - /root/${APP_NAME}/node_modules
+                #         - /root/${APP_NAME}/.env

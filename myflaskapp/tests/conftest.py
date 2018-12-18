@@ -6,7 +6,6 @@ from webtest import TestApp
 
 from myflaskapp.app import create_app
 from myflaskapp.database import db as _db
-from myflaskapp.settings import TestConfig
 
 from .factories import UserFactory
 
@@ -14,7 +13,7 @@ from .factories import UserFactory
 @pytest.fixture
 def app():
     """An application for the tests."""
-    _app = create_app(TestConfig)
+    _app = create_app('tests.settings')
     ctx = _app.test_request_context()
     ctx.push()
 
