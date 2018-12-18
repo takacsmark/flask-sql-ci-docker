@@ -11,13 +11,6 @@ COPY $app_name $app_name
 
 WORKDIR /root/$app_name
 RUN pip install -r requirements/dev.txt
-# RUN cp .env.example .env
 RUN npm install
-
-ENV FLASK_APP=autoapp.py
-ENV FLASK_DEBUG=1
-ENV FLASK_ENV=development
-ENV DATABASE_URL="sqlite:////tmp/dev.db"
-ENV SECRET_KEY="not-so-secret"
 
 CMD npm start
