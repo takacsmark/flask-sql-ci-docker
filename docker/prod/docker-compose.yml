@@ -7,8 +7,8 @@ services:
                         dockerfile: docker/prod/Dockerfile
                         args:
                                 app_name: ${APP_NAME}
-                                python_image_version: ${python_image_version}
-                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:prod2019
+                                python_image_version: ${PYTHON_IMAGE_VERSION}
+                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:${APP_VERSION}-prod
                 ports:
                         - 5000:5000
                 environment:
@@ -25,7 +25,7 @@ services:
                 deploy:
                         replicas: 2
         postgres:
-                image: postgres:10.3-alpine
+                image: postgres:${POSTGRES_IMAGE_VERSION}
                 environment:
                         POSTGRES_PASSWORD_FILE: /run/secrets/db_password
                 volumes:
