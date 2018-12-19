@@ -7,7 +7,8 @@ services:
                         dockerfile: docker/prod/Dockerfile
                         args:
                                 app_name: ${APP_NAME}
-                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:prod
+                                python_image_version: ${python_image_version}
+                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:prod2019
                 ports:
                         - 5000:5000
                 environment:
@@ -15,10 +16,11 @@ services:
                         FLASK_APP: autoapp.py
                         FLASK_DEBUG: 0
                         FLASK_ENV: production
-                        DATABASE_URL: postgres
+                        APP_SECRET: /run/secrets/app_secret
                 networks:
                         - flaskappnet
                 secrets:
+                        - app_secret
                         - db_password
                 deploy:
                         replicas: 2
@@ -48,7 +50,9 @@ services:
                                 constraints: [node.role == manager]
 secrets:
         db_password:
-                file: ../../db_password.txt
+                file: ../../_db_password.txt
+        app_secret:
+                file: ../../_app_secret.txt
 volumes:
         proddb:
 networks:

@@ -2,4 +2,5 @@ secrets.env
 */dev.db
 */migrations/**
 myflaskapp/
-db_password.txt
+_db_password.txt
+_app_secret.txt
