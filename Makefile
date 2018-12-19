@@ -3,20 +3,27 @@ cnf ?= .env
 include $(cnf)
 export $(shell sed 's/=.*//' $(cnf))
 
-#Create secret for development
-DEV_SECRET=$(shell echo  $(APP_NAME) | tr /a-z/ /A-Z/ )_SECRET=$(shell openssl rand -base64 32)
-
 .PHONY: init
 
 help:
 	@echo
 	@echo "Usage: make TARGET"
 	@echo
-	@echo "$(PROJECT_NAME) project automation helper"
+	@echo "Dockerization of the sloria/cookiecutter-flask template repo"
 	@echo
 	@echo "Targets:"
-	@echo "	init 		generate source code base from GitHub repo"
-	@echo "	init-purge 	clean up generated code" 
+	@echo "	init 		initialize your app code base from the sloria/cookiecutter-flask repo"
+	@echo "	init-purge 	clean up generated code"
+	@echo "	dev-build 	build the Docker image for development"
+	@echo "	dev-up  	start the app in development mode with Docker Compose"
+	@echo "	dev-down 	stop the app in development mode with Docker Compose"
+	@echo "	dev-ps  	list development containers"
+	@echo "	dev-logs 	follow development logs"
+	@echo "	test-run 	run the test with Docker Compose"
+	@echo "	prod-build 	buld the Docker image for production"
+	@echo "	prod-deploy	deploy the app in production mode to a Swam cluster"
+	@echo "	prod-rm 	remove the production deployment from the Swarm"
+	@echo "	aws deploy 	deploy the app in production mode to AWS"
 
 #Generate project code base form GitHub using cookiecutter
 init:
@@ -31,10 +38,6 @@ init:
 #Remove the generated code, use this before re-running the `init` target 
 init-purge: 
 	sudo rm -rf ./$(APP_NAME)
-
-#Write the development secret to file
-.dev-secret:
-	echo $(DEV_SECRET) > secrets.env
 
 #Build the development image
 dev-build:
