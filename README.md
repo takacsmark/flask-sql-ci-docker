@@ -73,7 +73,7 @@ make dev-up
 
 You can access the application on `localhost:5000`.
 
-_Please note that you need to initialize the database to make your application work._You can achieve this executing the following steps:
+_Please note that you need to initialize the database to make your application work._ You can achieve this executing the following steps:
 
 * Identify your application's Docker container with `docker ps`.
 * Open an interactive shell in the container with `docker exec -ti <container_id> /bin/ash`.
@@ -175,7 +175,7 @@ Deploy the database.
 kubectl create -f docker/prod/postgres-deployment.yaml
 ```
 
-Push the Flask application image to the Docker Hub. _Note: if you did not change the DOCKER_USERNAME configuration in the .env file, then you can skip this step and use the [default image that lives on the Docker Hub](https://cloud.docker.com/repository/docker/takacsmark/flask-sql-ci-web).
+Push the Flask application image to the Docker Hub. _Note: if you did not change the DOCKER\_USERNAME configuration in the .env file, then you can skip this step and use the [default image that lives on the Docker Hub](https://cloud.docker.com/repository/docker/takacsmark/flask-sql-ci-web)._
 
 ```terminal
 docker login
