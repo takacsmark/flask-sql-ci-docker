@@ -36,14 +36,19 @@ spec:
         tier: web
     spec:
       containers:
-      - image: takacsmark/flask-sql-ci-web:prod-k8s
+      - image: takacsmark/flask-sql-ci-web:2.0.0-prod
         name: web
         env:
         - name: POSTGRES_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: db-password
-              key: db_password.txt
+              key: _db_password.txt
+        - name: APP_SECRET
+          valueFrom: 
+            secretKeyRef:
+              name: app-secret
+              key: _app_secret.txt
         ports:
         - containerPort: 5000
           name: web

@@ -48,14 +48,14 @@ spec:
         tier: postgres
     spec:
       containers:
-      - image: postgres:10.3-alpine
+      - image: postgres:11.1-alpine
         name: postgres
         env:
         - name: POSTGRES_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: db-password
-              key: db_password.txt
+              key: _db_password.txt
         volumeMounts:
         - name: proddb
           mountPath: /var/lib/postgresql/data

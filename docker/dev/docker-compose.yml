@@ -9,7 +9,7 @@ services:
                                 app_name: ${APP_NAME}
                                 python_image_version: ${PYTHON_IMAGE_VERSION}
                                 repo_release_version: ${REPO_RELEASE_VERSION}
-                image: ${DOCKER_USERNAME}/flask-mysql-ci-web:${APP_VERSION}-dev
+                image: ${DOCKER_USERNAME}/flask-sql-ci-web:${APP_VERSION}-dev
                 environment:
                         FLASK_APP: autoapp.py
                         FLASK_DEBUG: 1
