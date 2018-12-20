@@ -1,6 +1,6 @@
 # flask-sql-ci-docker
 
-A containerized version of the [https://github.com/sloria/cookiecutter-flask](https://github.com/sloria/cookiecutter-flask) template project.
+A containerized version of the [https://github.com/sloria/cookiecutter-flask](https://github.com/sloria/cookiecutter-flask){:target="_blank"} template project.
 
 [![Build Status](https://travis-ci.org/takacsmark/flask-sql-ci-docker.svg?branch=master)](https://travis-ci.org/takacsmark/flask-sql-ci-docker)
 
@@ -8,7 +8,7 @@ A containerized version of the [https://github.com/sloria/cookiecutter-flask](ht
 
 This repo adds Docker containers to the [https://github.com/sloria/cookiecutter-flask](https://github.com/sloria/cookiecutter-flask) template project.
 
-The original project at [https://github.com/sloria/cookiecutter-flask](https://github.com/sloria/cookiecutter-flask) is a template for Flask based web applications with best practices and well-written boilerplate for development, testing and production.
+The original project at [https://github.com/sloria/cookiecutter-flask](https://github.com/sloria/cookiecutter-flask){:target="_blank"} is a template for Flask based web applications with best practices and well-written boilerplate for development, testing and production.
 
 This repo adds Docker containers to the original project so that you can:
 
@@ -21,7 +21,7 @@ This repo adds Docker containers to the original project so that you can:
 
 ## Purpose and disclaimer
 
-This repository was created for Docker learning, a step-by-step guide to build this repository is described [here](https://takacsmark.com/get-started-with-docker-in-your-projects-through-examples/).
+This repository was created for Docker learning, a sa detailed tutorial to build this repository is described in [my book](https://takacsmark.com/get-started-with-docker-in-your-projects-through-examples/){:target="_blank"}.
 
 The repo contains a basic production configuration and was lightly tested in production. If you are using this repo in production you are welcome to contribute.
 
@@ -79,7 +79,7 @@ _Please note that you need to initialize the database to make your application w
 * Open an interactive shell in the container with `docker exec -ti <container_id> /bin/ash`.
 * Initialize the db with `flask db init && flask db migrate && flask db upgrade`.
 
-You can read more about this in the [sloria repo](https://github.com/sloria/cookiecutter-flask/tree/master/%7B%7Bcookiecutter.app_name%7D%7D).
+You can read more about this in the [sloria repo](https://github.com/sloria/cookiecutter-flask/tree/master/%7B%7Bcookiecutter.app_name%7D%7D){:target="_blank"}.
 
 Follow the logs.
 
@@ -148,7 +148,7 @@ make prod-rm
 
 The repo features a basic Kubernetes deployment showcase.
 
-Install a hypervisor, kubectl and Minikube as described [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
+Install a hypervisor, kubectl and Minikube as described [here](https://kubernetes.io/docs/tasks/tools/install-minikube/){:target="_blank"}.
 
 Start up Minikube.
 
@@ -175,7 +175,7 @@ Deploy the database.
 kubectl create -f docker/prod/postgres-deployment.yaml
 ```
 
-Push the Flask application image to the Docker Hub. _Note: if you did not change the DOCKER\_USERNAME configuration in the .env file, then you can skip this step and use the [default image that lives on the Docker Hub](https://cloud.docker.com/repository/docker/takacsmark/flask-sql-ci-web)._
+Push the Flask application image to the Docker Hub. _Note: if you did not change the DOCKER\_USERNAME configuration in the .env file, then you can skip this step and use the [default image that lives on the Docker Hub](https://cloud.docker.com/repository/docker/takacsmark/flask-sql-ci-web){:target="_blank"}._
 
 ```terminal
 docker login
