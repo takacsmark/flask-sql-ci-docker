@@ -73,7 +73,7 @@ make dev-up
 
 You can access the application on `localhost:5000`.
 
-_Please note that you need to initialize the database to make your application work._You can achive this executing the following steps:
+_Please note that you need to initialize the database to make your application work._You can achieve this executing the following steps:
 
 * Identify your application's Docker container with `docker ps`.
 * Open an interactive shell in the container with `docker exec -ti <container_id> /bin/ash`.
@@ -127,7 +127,10 @@ Initialize the database.
 
 * Identify your application's Docker container with `docker ps`.
 * Open an interactive shell in the container with `docker exec -ti <container_id> /bin/ash`.
+* Export the environment variables from secrets with `. ./exportsecret.sh`.
 * Initialize the db with `flask db init && flask db migrate && flask db upgrade`.
+
+Access the application on `localhost:5000`.
 
 Use standard Swarm management commands to see logs and manage your stack, e.g.:
 
@@ -143,7 +146,7 @@ make prod-rm
 
 ## Kubernetes
 
-The repo features a basic Kubernetes deploymetn showcase.
+The repo features a basic Kubernetes deployment showcase.
 
 Install a hypervisor, kubectl and Minikube as described [here](https://kubernetes.io/docs/tasks/tools/install-minikube/).
 
@@ -169,7 +172,7 @@ kubectl create secret generic db-password --from-file ./_db_password.txt
 Deploy the database.
 
 ```termnial
-kubectl create -f docker/prod/postgres-deployment.yaml 
+kubectl create -f docker/prod/postgres-deployment.yaml
 ```
 
 Push the Flask application image to the Docker Hub. _Note: if you did not change the DOCKER_USERNAME configuration in the .env file, then you can skip this step and use the [default image that lives on the Docker Hub](https://cloud.docker.com/repository/docker/takacsmark/flask-sql-ci-web).
@@ -188,8 +191,15 @@ kubectl create -f docker/prod/web-deployment.yaml
 Initialize the database.
 
 * Identify your application's Docker container with `kubectl get pods`.
-* Open an interactive shell in the container with `kubectl exec -ti <container_id> /bin/ash`.
+* Open an interactive shell in the container with `kubectl exec -ti <pod_name> /bin/ash`.
+* Export the environment variables from secrets with `. ./exportsecret.sh`.
 * Initialize the db with `flask db init && flask db migrate && flask db upgrade`.
+
+Access the application running the below command.
+
+```termnial
+minikube service web
+```
 
 ## Compatibility with the sloria/cookiecutter-flask repo
 

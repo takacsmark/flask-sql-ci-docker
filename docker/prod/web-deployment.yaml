@@ -39,17 +39,39 @@ spec:
       - image: takacsmark/flask-sql-ci-web:2.0.0-prod
         name: web
         env:
+        - name: FLASK_APP
+          value: autoapp.py
+        - name: FLASK_DEBUG
+          value: "0"
+        - name: FLASK_ENV
+          value: production
         - name: POSTGRES_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: db-password
-              key: _db_password.txt
+          value: /run/secrets/db-password
         - name: APP_SECRET
-          valueFrom: 
-            secretKeyRef:
-              name: app-secret
-              key: _app_secret.txt
+          value: /run/secrets/app-secret      
         ports:
         - containerPort: 5000
           name: web
+        volumeMounts:
+        - name: db-password
+          mountPath: "/run/secrets/db-password"
+          subPath: "db-password"
+          readOnly: true
+        - name: app-secret
+          mountPath: "/run/secrets/app-secret" 
+          subPath: "app-secret"
+          readOnly: true          
       restartPolicy: Always
+      volumes:
+      - name: db-password
+        secret:
+          secretName: db-password
+          items:
+          - key: _db_password.txt
+            path: db-password
+      - name: app-secret
+        secret:
+          secretName: app-secret
+          items:
+          - key: _app_secret.txt
+            path: app-secret
