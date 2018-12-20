@@ -30,8 +30,6 @@ init:
 	envsubst <docker/init/cookiecutter.template.yml >docker/init/cookiecutter.yml
 	docker-compose -f docker/init/docker-compose.yml up -d --build
 	docker cp flask-mysql-ci-initiator:/root/$(APP_NAME) ./$(APP_NAME)
-	sed -i '' -e 's/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline/NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline --host 0.0.0.0/' ./$(APP_NAME)/package.json
-	sed -i '' -e 's/flask run/flask run --host=0.0.0.0/' ./$(APP_NAME)/package.json
 	docker-compose -f docker/init/docker-compose.yml down
 	rm docker/init/cookiecutter.yml
 

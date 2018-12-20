@@ -12,4 +12,4 @@ WORKDIR /root/$app_name
 RUN pip install -r requirements/dev.txt
 RUN npm install
 
-CMD npm start
+CMD npx concurrently -n "WEBPACK,FLASK" -c "bgBlue.bold,bgMagenta.bold" "NODE_ENV=debug webpack-dev-server --port 2992 --hot --inline --host 0.0.0.0" "flask run --host=0.0.0.0"
