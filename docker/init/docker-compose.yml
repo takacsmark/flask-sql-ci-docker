@@ -9,5 +9,5 @@ services:
                                 repo_release_version: ${REPO_RELEASE_VERSION}
                                 python_image_version: ${PYTHON_IMAGE_VERSION}
                 image: ${DOCKER_USERNAME}/cookiecutter:${APP_VERSION}-initiator
-                container_name: flask-mysql-ci-initiator
+                container_name: flask-sql-ci-initiator
                 command: tail -f /dev/null
