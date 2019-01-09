@@ -29,7 +29,7 @@ help:
 init:
 	envsubst <docker/init/cookiecutter.template.yml >docker/init/cookiecutter.yml
 	docker-compose -f docker/init/docker-compose.yml up -d --build
-	docker cp flask-mysql-ci-initiator:/root/$(APP_NAME) ./$(APP_NAME)
+	docker cp flask-sql-ci-initiator:/root/$(APP_NAME) ./$(APP_NAME)
 	docker-compose -f docker/init/docker-compose.yml down
 	rm docker/init/cookiecutter.yml
 
@@ -48,7 +48,6 @@ dev-up:
 #Bring down development environment
 dev-down:
 	docker-compose -f docker/dev/docker-compose.yml down
-	# rm secrets.env
 
 #List development conatiners
 dev-ps:

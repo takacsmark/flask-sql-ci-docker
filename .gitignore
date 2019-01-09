@@ -1,5 +1,3 @@
-*/dev.db
-*/migrations/**
-myflaskapp/
+myflaskapp
 _db_password.txt
 _app_secret.txt
