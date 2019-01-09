@@ -17,6 +17,7 @@ before_install:
         - sudo mv docker-compose /usr/local/bin
 
 script:
+- make init
 - make test-run
 
 after_success:
