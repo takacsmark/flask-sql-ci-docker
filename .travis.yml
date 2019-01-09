@@ -19,10 +19,10 @@ before_install:
 script:
 - make init
 - make test-run
+- make prod-build
 
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-      make prod-build;
       docker-compose -f docker/prod/docker-compose.yml push;
     fi
